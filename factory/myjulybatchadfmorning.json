@@ -1,0 +1,15 @@
+{
+	"name": "myjulybatchadfmorning",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "21acd74b-98e0-499f-855e-ace2c8023049",
+		"tenantId": "2ee2f2e5-12ff-4e34-99d4-49a44879f396"
+	}
+}
