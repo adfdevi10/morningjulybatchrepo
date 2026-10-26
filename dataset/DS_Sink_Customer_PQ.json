@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Customer.parque",
-				"fileSystem": "Sink"
+				"fileSystem": "sink"
 			},
 			"compressionCodec": "snappy"
 		},
