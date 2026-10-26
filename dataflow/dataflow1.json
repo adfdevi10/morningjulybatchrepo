@@ -1,0 +1,36 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Customer_Source_SQL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 derive(FullName = concat(\r",
+				"    iif(isNull(Title), ' ', toString(Title)),\r",
+				"    iif(isNull(FirstName), ' ', toString(FirstName)),\r",
+				"    iif(isNull(MiddleName), ' ', toString(MiddleName)),\r",
+				"    iif(isNull(LastName), ' ', toString(LastName)),\r",
+				"    iif(isNull(Suffix), ' ', toString(Suffix))\r",
+				")) ~> derivedColumn1"
+			]
+		}
+	}
+}
