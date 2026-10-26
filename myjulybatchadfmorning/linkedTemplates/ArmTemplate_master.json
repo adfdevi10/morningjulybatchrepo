@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabaseLS'"
 		},
+		"OnpremSQLServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'OnpremSQLServerLS'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mydevstorageacc.dfs.core.windows.net/"
@@ -46,6 +50,18 @@
 		"AzureSqlDatabaseLS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "dbadmin"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "PREETHAM"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorksLT2025"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "deviadmin"
 		},
 		"RestLS_properties_typeProperties_url": {
 			"type": "string",
@@ -107,9 +123,6 @@
 					},
 					"RestLS_properties_typeProperties_url": {
 						"value": "[parameters('RestLS_properties_typeProperties_url')]"
-					},
-					"AzureDataLakeStorageUsingKVLS_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataLakeStorageUsingKVLS_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -128,6 +141,21 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"OnpremSQLServerLS_password": {
+						"value": "[parameters('OnpremSQLServerLS_password')]"
+					},
+					"AzureDataLakeStorageUsingKVLS_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorageUsingKVLS_properties_typeProperties_url')]"
+					},
+					"OnpremSQLServerLS_properties_typeProperties_server": {
+						"value": "[parameters('OnpremSQLServerLS_properties_typeProperties_server')]"
+					},
+					"OnpremSQLServerLS_properties_typeProperties_database": {
+						"value": "[parameters('OnpremSQLServerLS_properties_typeProperties_database')]"
+					},
+					"OnpremSQLServerLS_properties_typeProperties_userName": {
+						"value": "[parameters('OnpremSQLServerLS_properties_typeProperties_userName')]"
 					}
 				}
 			},

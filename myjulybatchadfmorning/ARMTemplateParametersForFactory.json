@@ -14,6 +14,9 @@
 		"AzureSqlDatabaseLS_password": {
 			"value": ""
 		},
+		"OnpremSQLServerLS_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://mydevstorageacc.dfs.core.windows.net/"
 		},
@@ -34,6 +37,15 @@
 		},
 		"AzureSqlDatabaseLS_properties_typeProperties_userName": {
 			"value": "dbadmin"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_server": {
+			"value": "PREETHAM"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_database": {
+			"value": "AdventureWorksLT2025"
+		},
+		"OnpremSQLServerLS_properties_typeProperties_userName": {
+			"value": "deviadmin"
 		},
 		"RestLS_properties_typeProperties_url": {
 			"value": "https://jsonplaceholder.typicode.com/users"
