@@ -1,0 +1,20 @@
+{
+	"name": "DS_Sink_Customer_PQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Customer.parque",
+				"fileSystem": "Sink"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
