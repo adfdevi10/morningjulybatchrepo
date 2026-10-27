@@ -86,7 +86,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\r\n    'SELECT * FROM ', item().table_name,\r\n    ' WHERE ', item().watermarkcolumn,\r\n    ' > ''', item().lastwatermark, '''',\r\n    ' AND ', item().watermarkcolumn,\r\n    ' <= ''', formatDateTime(variables('CurrentDateTime'), 'yyyy-MM-dd HH:mm:ss'), ''''\r\n)",
+										"value": "@concat(\n    'SELECT * FROM ', item().table_name,\n    ' WHERE ', item().watermarkcolumn,\n    ' > ''', item().lastwatermark, '''',\n    ' AND ', item().watermarkcolumn,\n    ' <= ''', formatDateTime(variables('CurrentDateTime'), 'yyyy-MM-dd HH:mm:ss'), ''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "00:10:00",
