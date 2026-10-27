@@ -1817,6 +1817,42 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AddDateTime')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Flowlet",
+				"typeProperties": {
+					"sources": [],
+					"sinks": [],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "input1"
+						},
+						{
+							"name": "output1"
+						}
+					],
+					"scriptLines": [
+						"input(output(",
+						"          ModifiedDate as timestamp",
+						"     ),",
+						"     order: 0,",
+						"     allowSchemaDrift: true) ~> input1",
+						"input1 derive(AddDateTime = currentUTC()) ~> derivedColumn1",
+						"derivedColumn1 output(mapColumn(",
+						"          each(match(/* All input columns */true()),",
+						"               /* Input name */$$ = $$)",
+						"     )) ~> output1"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Customer_Transform')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -1842,6 +1878,14 @@
 						}
 					],
 					"transformations": [
+						{
+							"name": "flowlet1",
+							"flowlet": {
+								"referenceName": "AddDateTime",
+								"type": "DataFlowReference",
+								"parameters": {}
+							}
+						},
 						{
 							"name": "derivedColumn1"
 						},
@@ -1878,6 +1922,10 @@
 						"     validateSchema: false,",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     format: 'table') ~> source1",
+						"sort1 compose(mapColumn(",
+						"          ModifiedDate",
+						"     ),",
+						"     composition: 'AddDateTime') ~> flowlet1@(output1)",
 						"source1 derive(FullName = concat(\r",
 						"    iif(isNull(byName('Title')), ' ', toString(byName('Title'))),\" \",\r",
 						"    iif(isNull(byName('FirstName')), ' ', toString(byName('FirstName'))),\" \",\r",
@@ -1894,9 +1942,9 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> RemoveColumns1",
 						"select1 sort(asc(CustomerID, false)) ~> sort1",
-						"sort1 sink(allowSchemaDrift: true,",
+						"flowlet1@output1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     partitionFileNames:['customer'],",
+						"     partitionFileNames:['customer_transformed.csv'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
@@ -1907,6 +1955,7 @@
 				}
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/AddDateTime')]",
 				"[concat(variables('factoryId'), '/datasets/DS_Customer_Source_SQL')]",
 				"[concat(variables('factoryId'), '/datasets/DS_Sink_Customer_csv')]"
 			]
