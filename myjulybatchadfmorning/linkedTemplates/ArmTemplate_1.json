@@ -1604,7 +1604,7 @@
 													}
 												],
 												"type": "Query",
-												"text": "update salesLT.WatermarkTable SET LastWatermark = @LastWatermark where table_name = @table_name"
+												"text": "update salesLT.WatermarkTable SET lastwatermark = @LastWatermark where table_name = @table_name"
 											}
 										],
 										"scriptBlockExecutionTimeout": "02:00:00"
