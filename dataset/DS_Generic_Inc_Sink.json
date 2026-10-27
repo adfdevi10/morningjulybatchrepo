@@ -23,7 +23,7 @@
 					"value": "@dataset().FolderName",
 					"type": "Expression"
 				},
-				"fileSystem": "IncrementalLoad"
+				"fileSystem": "incrementalload"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
